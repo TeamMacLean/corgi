@@ -1,0 +1,31 @@
+<% include _head.ejs %>
+
+
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-centered"><a><%- site.origin %></a></h1>
+
+        <% site.paths.map(path=>{ %>
+
+
+
+            <div class="level">
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Path</p>
+                        <p class="title"><%- path.path %></p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Visits</p>
+                        <p class="title"><%- path.count %></p>
+                    </div>
+                </div>
+            </div>
+
+        <% }) %>
+    </div>
+</section>
+<% include _foot.ejs %>
+

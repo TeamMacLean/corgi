@@ -26,17 +26,14 @@ app.use(function (req, res, next) {
 
 mongoose.connect('mongodb://localhost:27017/corgi', {useNewUrlParser: true});
 
-// const Site = require('./models/site');
 const Ping = require('./models/ping');
 
 
-function applyToEach(ping) {
+function SiteStats(ping) {
     return new Promise((good, bad) => {
 
         const promises = [];
         const output = {origin: ping, paths: []};
-
-        console.log(ping);
 
         promises.push(
             new Promise((good, bad) => {
@@ -56,7 +53,6 @@ function applyToEach(ping) {
             new Promise((good, bad) => {
                 Ping.find({origin: ping}).distinct('pathname')
                     .then(paths => {
-                        // console.log('paths', paths);
 
 
                         Promise.all(paths.map(path => {
@@ -81,9 +77,6 @@ function applyToEach(ping) {
 
         Promise.all(promises)
             .then(() => {
-
-
-                //TODO sort paths
                 output.paths = output.paths.sort((a, b) => {
                     if (a.path < b.path)
                         return -1;
@@ -99,28 +92,52 @@ function applyToEach(ping) {
     })
 }
 
+app.get('/client.js', function (req, res, next) {
+    return res.sendFile(path.join(__dirname, '/public/js/dist/client.js'));
+});
+
 app.get('/', function (req, res, next) {
 
     Ping.find().distinct('origin')
         .then(pings => {
 
-            Promise.all(
-                pings.map(ping => {
-                    return applyToEach(ping)
-                })
-            )
-                .then(output => {
-                    console.log(JSON.stringify(output));
-                    return res.render('index', {pings: output});
+            //get total count
+
+            Promise.all(pings.map(ping => {
+                return Ping.find({origin: ping}).countDocuments().exec()
+            }))
+                .then(counts => {
+
+                    pings = pings.map((ping, i) => {
+                        return {origin: ping, count: counts[i], originBase64: new Buffer.from(ping).toString('base64')}
+                    });
+
+                    return res.render('index', {pings});
                 })
                 .catch(err => {
-
+                    console.error(err);
+                    next();
                 })
+
+
         })
 });
 
-app.get('/client.js', function (req, res, next) {
-    return res.sendFile(path.join(__dirname, '/public/js/dist/client.js'));
+
+app.get('/site/:base', function (req, res, next) {
+    let buff = new Buffer.from(req.params.base, 'base64');
+    let text = buff.toString('ascii');
+
+
+    SiteStats(text)
+        .then(site => {
+            // console.log(site);
+            return res.render('show', {site})
+        })
+        .catch(err => {
+            return next(err);
+        });
+
 });
 
 app.post('/', function (req, res, next) {

@@ -1,42 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Corgi</title>
-    <link rel='stylesheet' href='/style/style.css'/>
-</head>
-<body>
-<h1>Corgi</h1>
+<% include _head.ejs %>
 
-<p>embed code: <textarea rows="1" cols="50" style="resize: unset;" readonly><scripts
-                src="http://analytics.tsl.ac.uk/client.js"></scripts></textarea></p>
 
-<% pings.map(ping => { %>
-    <p><a><%- ping.origin %></a>: <%- ping.count %></p>
+<section class="section">
+    <div class="container">
 
-    <button onclick="toggle('<%- ping.origin %>')">Toggle paths</button>
+        <h1 class="title has-text-centered"><a>Sites</a></h1>
+        <% pings.map(ping => { %>
 
-    <div id="<%- ping.origin %>" style="display: none;">
-        <% ping.paths.map(path=>{ %>
-            <p style="text-indent:50px;"><a><%- path.path %></a>: <%- path.count %></p>
-        <% }); %>
+            <a href="/site/<%- ping.originBase64 %>">
+                <div class="level">
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Origin</p>
+                            <p class="title"><%- ping.origin %></p>
+                        </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Total Visits</p>
+                            <p class="title"><%- ping.count %></p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        <% }) %>
+        <hr/>
+        <p>Embed code: <textarea rows="1"
+                                 class="textarea" style="resize: unset;"
+                                 readonly><scripts src="http://analytics.tsl.ac.uk/client.js"></scripts></textarea>
+        </p>
+
     </div>
-<% }) %>
+</section>
+<% include _foot.ejs %>
 
-<script src="/client.js"></script>
-
-
-<script>
-
-    function toggle(origin) {
-        var x = document.getElementById(origin);
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
-
-</script>
-
-</body>
-</html>
