@@ -14,7 +14,9 @@ const pingSchema = new Schema({
     port: {type: String},
     pathname: {type: String},
     search: {type: String},
-    hash: {type: String}
+    hash: {type: String},
+
+    fromIP: {type: String}
 
 
 }, {timestamps: true});

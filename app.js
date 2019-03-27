@@ -101,8 +101,6 @@ app.get('/', function (req, res, next) {
     Ping.find().distinct('origin')
         .then(pings => {
 
-            //get total count
-
             Promise.all(pings.map(ping => {
                 return Ping.find({origin: ping}).countDocuments().exec()
             }))
@@ -141,12 +139,15 @@ app.get('/site/:base', function (req, res, next) {
 });
 
 app.post('/', function (req, res, next) {
-    // console.log(req.body);
+
+    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || 'UNKNOWN';
+
 
     if (req.body && req.body.location) {
         const {href, ancestorOrigins, origin, protocol, host, hostname, port, pathname, search, hash} = req.body.location
         new Ping({
-            href, ancestorOrigins, origin, protocol, host, hostname, port, pathname, search, hash
+            href, ancestorOrigins, origin, protocol, host, hostname, port, pathname, search, hash,
+            fromIP: ip
         })
             .save()
             .catch(err => {
