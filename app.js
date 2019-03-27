@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.connect('mongodb://localhost:27017/corgi', {useNewUrlParser: true});
 
-const Site = require('./models/site');
+// const Site = require('./models/site');
 const Ping = require('./models/ping');
 
 app.get('/', function (req, res, next) {
@@ -28,31 +28,25 @@ app.get('/', function (req, res, next) {
     });
 
     Ping.find().distinct('origin')
-    // Ping.find({})
         .then(pings => {
-            // return res.render('index', {pings});
-
 
             Promise.all(pings.map(ping => {
                 return Ping.find({origin: ping}).countDocuments().exec()
             }))
                 .then(out => {
-                    // pings[ping].count = out;
-
                     pings = pings.map((p, i) => {
                         return {origin: p, count: out[i]};
                     });
-                    console.log('pingsss', pings);
                     return res.render('index', {pings});
                 })
                 .catch(err => {
                     console.error(err);
+                    return next(err);
                 })
-
         })
         .catch(err => {
             console.error(err);
-            next();
+            return next(err);
         })
 
 });

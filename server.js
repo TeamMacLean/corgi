@@ -3,7 +3,7 @@ const debug = require('debug')('corgi:server');
 const http = require('http');
 const config = require('./config');
 
-const port = normalizePort(config.PORT || '3000');
+const port = normalizePort(config.PORT);
 app.set('port', port);
 
 const server = http.createServer(app);
