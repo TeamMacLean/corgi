@@ -1,9 +1,10 @@
 import fetch from 'unfetch';
 
 const config = require('../../../config');
-const {href, ancestorOrigins, origin, protocol, host, hostname, port, pathname, search, hash} = window.location;
 
 try {
+    const {href, ancestorOrigins, origin, protocol, host, hostname, port, pathname, search, hash} = window.location;
+
     fetch(config.URL, {
         method: 'POST',
         headers: {
