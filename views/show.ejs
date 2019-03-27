@@ -5,27 +5,64 @@
     <div class="container">
         <h1 class="title has-text-centered"><a><%- site.origin %></a></h1>
 
+        <canvas id="myChart" height="100"></canvas>
+        <script>
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        </script>
+
         <% site.paths.map(path=>{ %>
 
 
-            <div class="level">
-                <div class="level-left">
-                    <div class="level-item">
-                        <div>
-                            <p class="heading">Path</p>
-                            <p class="subtitle"><%- path.path %></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="level-right">
-                    <div class="level-item">
-                        <div>
-                            <p class="heading">Visits</p>
-                            <p class="subtitle"><%- path.count %></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <table class="table is-fullwidth">
+                <thead>
+                <tr>
+                    <th><abbr title="Path">Path</abbr></th>
+                    <th>Visits</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th><%- path.path %></th>
+                    <td><%- path.count %></td>
+                </tr>
+                </tbody>
+            </table>
 
         <% }) %>
     </div>
