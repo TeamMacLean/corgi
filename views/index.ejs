@@ -10,7 +10,7 @@
 <p>Client path: /client.js</p>
 
 <% pings.map(ping => { %>
-<p><%- ping %></p>
+    <p><a><%- ping.origin %></a>: <%- ping.count %></p>
 <% }) %>
 
 <script src="/client.js"></script>

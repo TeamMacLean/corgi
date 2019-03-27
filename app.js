@@ -22,9 +22,33 @@ const Site = require('./models/site');
 const Ping = require('./models/ping');
 
 app.get('/', function (req, res, next) {
-    Ping.find({})
+
+    Ping.distinct('origin').countDocuments().exec(function (err, count) {
+        console.log('The number of unique origins is: %d', count);
+    });
+
+    Ping.find().distinct('origin')
+    // Ping.find({})
         .then(pings => {
-            return res.render('index', {pings});
+            // return res.render('index', {pings});
+
+
+            Promise.all(pings.map(ping => {
+                return Ping.find({origin: ping}).countDocuments().exec()
+            }))
+                .then(out => {
+                    // pings[ping].count = out;
+
+                    pings = pings.map((p, i) => {
+                        return {origin: p, count: out[i]};
+                    });
+                    console.log('pingsss', pings);
+                    return res.render('index', {pings});
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+
         })
         .catch(err => {
             console.error(err);
