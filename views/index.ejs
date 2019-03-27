@@ -12,12 +12,31 @@
 
 <% pings.map(ping => { %>
     <p><a><%- ping.origin %></a>: <%- ping.count %></p>
-    <% ping.paths.map(path=>{ %>
-    <p style="text-indent:50px;"><a><%- path.path %></a>: <%- path.count %></p>
-    <% }); %>
 
+    <button onclick="toggle('<%- ping.origin %>')">Toggle paths</button>
+
+    <div id="<%- ping.origin %>" style="display: none;">
+        <% ping.paths.map(path=>{ %>
+            <p style="text-indent:50px;"><a><%- path.path %></a>: <%- path.count %></p>
+        <% }); %>
+    </div>
 <% }) %>
 
 <script src="/client.js"></script>
+
+
+<script>
+
+    function toggle(origin) {
+        var x = document.getElementById(origin);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+</script>
+
 </body>
 </html>
