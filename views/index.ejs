@@ -8,10 +8,21 @@
         <% pings.map(ping => { %>
 
             <a href="/site/<%- ping.originBase64 %>">
-                <p class="heading">Origin</p>
-                <p class="title"><%- ping.origin %></p>
-                <p class="heading">Total Visits</p>
-                <p class="title"><%- ping.count %></p>
+
+                <div class="level">
+                    <div class="level-item">
+                        <div>
+                            <p class="heading">Origin</p>
+                            <p class="subtitle"><%- ping.origin %></p>
+                        </div>
+                    </div>
+                    <div class="level-item">
+                        <div>
+                            <p class="heading">Total Visits</p>
+                            <p class="subtitle"><%- ping.count %></p>
+                        </div>
+                    </div>
+                </div>
             </a>
 
         <% }) %>
