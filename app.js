@@ -29,30 +29,83 @@ mongoose.connect('mongodb://localhost:27017/corgi', {useNewUrlParser: true});
 // const Site = require('./models/site');
 const Ping = require('./models/ping');
 
+
+function applyToEach(ping) {
+    return new Promise((good, bad) => {
+
+        const promises = [];
+        const output = {origin: ping, paths: []};
+
+        console.log(ping);
+
+        promises.push(
+            new Promise((good, bad) => {
+                Ping.find({origin: ping}).countDocuments().exec()
+                    .then(count => {
+                        output.count = count;
+                        return good();
+                    })
+                    .catch(err => {
+                        return bad(err);
+                    });
+            })
+        );
+
+
+        promises.push(
+            new Promise((good, bad) => {
+                Ping.find({origin: ping}).distinct('pathname')
+                    .then(paths => {
+                        // console.log('paths', paths);
+
+
+                        Promise.all(paths.map(path => {
+                                return new Promise((g, b) => {
+                                    Ping.find({origin: ping, pathname: path}).countDocuments().exec()
+                                        .then(count => {
+                                            output.paths.push({path, count});
+                                            g();
+                                        })
+                                        .catch(b);
+                                })
+                            })
+                        )
+                            .then(good)
+                            .catch(bad)
+
+
+                    })
+                    .catch(bad)
+            })
+        );
+
+        Promise.all(promises)
+            .then(() => {
+                return good(output);
+            }).catch(bad);
+
+
+    })
+}
+
 app.get('/', function (req, res, next) {
 
     Ping.find().distinct('origin')
         .then(pings => {
 
-            Promise.all(pings.map(ping => {
-                return Ping.find({origin: ping}).countDocuments().exec()
-            }))
-                .then(out => {
-                    pings = pings.map((p, i) => {
-                        return {origin: p, count: out[i]};
-                    });
-                    return res.render('index', {pings});
+            Promise.all(
+                pings.map(ping => {
+                    return applyToEach(ping)
+                })
+            )
+                .then(output => {
+                    console.log(JSON.stringify(output));
+                    return res.render('index', {pings: output});
                 })
                 .catch(err => {
-                    console.error(err);
-                    return next(err);
+
                 })
         })
-        .catch(err => {
-            console.error(err);
-            return next(err);
-        })
-
 });
 
 app.get('/client.js', function (req, res, next) {

@@ -7,10 +7,15 @@
 <body>
 <h1>Corgi</h1>
 
-<p>embed code: <textarea rows="1" cols="50" style="resize: unset;" readonly><scripts src="http://analytics.tsl.ac.uk/client.js"></scripts></textarea></p>
+<p>embed code: <textarea rows="1" cols="50" style="resize: unset;" readonly><scripts
+                src="http://analytics.tsl.ac.uk/client.js"></scripts></textarea></p>
 
 <% pings.map(ping => { %>
     <p><a><%- ping.origin %></a>: <%- ping.count %></p>
+    <% ping.paths.map(path=>{ %>
+    <p style="text-indent:50px;"><a><%- path.path %></a>: <%- path.count %></p>
+    <% }); %>
+
 <% }) %>
 
 <script src="/client.js"></script>
