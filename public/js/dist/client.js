@@ -3,6 +3,6 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{}],"c5+L":[function(require,module,exports) {
 module.exports={PORT:3e3,URL:"http://127.0.0.1:3000"};
 },{}],"IVsl":[function(require,module,exports) {
-"use strict";var o=t(require("unfetch"));function t(o){return o&&o.__esModule?o:{default:o}}var r=require("../../../config"),e=window.location,n=e.href,i=e.ancestorOrigins,a=e.origin,c=e.protocol,s=e.host,h=e.hostname,l=e.port,u=e.pathname,f=e.search,g=e.hash;try{(0,o.default)(r.URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({location:{href:n,ancestorOrigins:i,origin:a,protocol:c,host:s,hostname:h,port:l,pathname:u,search:f,hash:g}})}).then(function(o){console.log(o)}).catch(function(o){console.error(o)})}catch(p){console.log("error posting to corgi")}
+"use strict";var o=r(require("unfetch"));function r(o){return o&&o.__esModule?o:{default:o}}var t=require("../../../config");try{var e=window.location,n=e.href,a=e.ancestorOrigins,i=e.origin,c=e.protocol,s=e.host,h=e.hostname,l=e.port,u=e.pathname,f=e.search,g=e.hash;(0,o.default)(t.URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({location:{href:n,ancestorOrigins:a,origin:i,protocol:c,host:s,hostname:h,port:l,pathname:u,search:f,hash:g}})}).then(function(o){console.log(o)}).catch(function(o){console.error(o)})}catch(p){console.log("error posting to corgi")}
 },{"unfetch":"1iLo","../../../config":"c5+L"}]},{},["IVsl"], null)
 //# sourceMappingURL=/client.js.map
