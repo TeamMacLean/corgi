@@ -1,5 +1,4 @@
 const app = require('./app');
-const debug = require('debug')('corgi:server');
 const http = require('http');
 const config = require('./config');
 
@@ -58,5 +57,5 @@ function onListening() {
     const bind = typeof addr === 'string'
         ? 'pipe ' + addr
         : 'port ' + addr.port;
-    debug('Listening on ' + bind);
+    console.log('Listening on ' + bind);
 }

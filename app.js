@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const lessMiddleware = require('less-middleware');
-const logger = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
@@ -13,7 +12,6 @@ app.use(cors());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(lessMiddleware(path.join(__dirname, 'public')));
@@ -25,10 +23,6 @@ mongoose.connect('mongodb://localhost:27017/corgi', {useNewUrlParser: true});
 const Ping = require('./models/ping');
 
 app.get('/', function (req, res, next) {
-
-    Ping.distinct('origin').countDocuments().exec(function (err, count) {
-        console.log('The number of unique origins is: %d', count);
-    });
 
     Ping.find().distinct('origin')
         .then(pings => {
