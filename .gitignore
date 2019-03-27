@@ -1,3 +1,4 @@
 .cache
 config.js
 node_modules
+js/dist/

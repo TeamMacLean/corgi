@@ -3,8 +3,11 @@ const path = require('path');
 const lessMiddleware = require('less-middleware');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
+
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
