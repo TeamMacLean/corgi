@@ -8,21 +8,10 @@
         <% site.paths.map(path=>{ %>
 
 
-
-            <div class="level">
-                <div class="level-item has-text-centered">
-                    <div>
-                        <p class="heading">Path</p>
-                        <p class="title"><%- path.path %></p>
-                    </div>
-                </div>
-                <div class="level-item has-text-centered">
-                    <div>
-                        <p class="heading">Visits</p>
-                        <p class="title"><%- path.count %></p>
-                    </div>
-                </div>
-            </div>
+            <p class="heading">Path</p>
+            <p class="title"><%- path.path %></p>
+            <p class="heading">Visits</p>
+            <p class="title"><%- path.count %></p>
 
         <% }) %>
     </div>
