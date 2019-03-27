@@ -129,7 +129,6 @@ app.get('/site/:base', function (req, res, next) {
 
     SiteStats(text)
         .then(site => {
-            // console.log(site);
             return res.render('show', {site})
         })
         .catch(err => {
@@ -140,14 +139,14 @@ app.get('/site/:base', function (req, res, next) {
 
 app.post('/', function (req, res, next) {
 
-    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || 'UNKNOWN';
+    const ClientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress || 'UNKNOWN';
 
 
     if (req.body && req.body.location) {
         const {href, ancestorOrigins, origin, protocol, host, hostname, port, pathname, search, hash} = req.body.location
         new Ping({
             href, ancestorOrigins, origin, protocol, host, hostname, port, pathname, search, hash,
-            fromIP: ip
+            fromIP: ClientIP
         })
             .save()
             .catch(err => {
