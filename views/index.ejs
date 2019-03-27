@@ -7,22 +7,21 @@
         <h1 class="title has-text-centered"><a>Sites</a></h1>
         <% pings.map(ping => { %>
 
-            <div class="level">
-                <a href="/site/<%- ping.originBase64 %>">
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <p class="heading">Origin</p>
-                            <p class="subtitle"><%- ping.origin %></p>
-                        </div>
+
+            <a href="/site/<%- ping.originBase64 %>" class="level">
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Origin</p>
+                        <p class="subtitle"><%- ping.origin %></p>
                     </div>
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <p class="heading">Total Visits</p>
-                            <p class="subtitle"><%- ping.count %></p>
-                        </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Total Visits</p>
+                        <p class="subtitle"><%- ping.count %></p>
                     </div>
-                </a>
-            </div>
+                </div>
+            </a>
 
         <% }) %>
         <hr/>
