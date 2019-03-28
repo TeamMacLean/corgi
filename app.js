@@ -105,25 +105,30 @@ function getWeek(origin) {
             ranges.push({
                 start: moment().subtract(i, 'days').startOf('day').toDate(),
                 end: moment().subtract(i, 'days').endOf('day').toDate(),
-                human: moment().subtract(i, 'days').format("dddd Do")
+                human: moment().subtract(i, 'days').format("dddd Do"),
+                offset: i
             })
         }
 
 
-        Promise.all(ranges.map(range => {
-            return Ping.find( //query today up to tonight
-                {origin:origin,"createdAt": {"$gte": range.start, "$lt": range.end}}).countDocuments().exec()
-        }))
-            .then(counts => {
-                console.log(ranges);
-                console.log(counts);
-
-                return good(
-                    ranges.map((range, i) => {
-                        range.count = counts[i];
-                        return range
+        return Promise.all(ranges.map((range, i) => {
+            return new Promise((g2, b2) => {
+                Ping.find( //query today up to tonight
+                    {origin: origin, "createdAt": {"$gte": range.start, "$lt": range.end}}).countDocuments().exec()
+                    .then(count => {
+                        range.count = count;
+                        return g2(range);
                     })
-                )
+                    .catch(b2);
+            })
+        }))
+            .then((ranges) => {
+
+                ranges.sort((a, b) => {
+                    return a.offset > b.offset ? -1 : 1;
+                });
+
+                return good(ranges);
 
             })
             .catch(bad)
