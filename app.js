@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function (req, res, next) {
     res.locals.URL = config.URL;
     next();
-})
+});
 
 mongoose.connect('mongodb://localhost:27017/corgi', {useNewUrlParser: true});
 
@@ -93,7 +93,7 @@ function SiteStats(ping) {
     })
 }
 
-function getWeek() {
+function getWeek(origin) {
 
     return new Promise((good, bad) => {
 
@@ -112,7 +112,7 @@ function getWeek() {
 
         Promise.all(ranges.map(range => {
             return Ping.find( //query today up to tonight
-                {"createdAt": {"$gte": range.start, "$lt": range.end}}).countDocuments().exec()
+                {origin:origin,"createdAt": {"$gte": range.start, "$lt": range.end}}).countDocuments().exec()
         }))
             .then(counts => {
                 console.log(ranges);
@@ -163,12 +163,12 @@ app.get('/', function (req, res, next) {
 
 app.get('/site/:base', function (req, res, next) {
     let buff = new Buffer.from(req.params.base, 'base64');
-    let text = buff.toString('ascii');
+    let origin = buff.toString('ascii');
 
-    getWeek()
+    getWeek(origin)
         .then(week => {
 
-            return SiteStats(text)
+            return SiteStats(origin)
                 .then(site => {
 
                     site.week = week;
