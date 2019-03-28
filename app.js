@@ -3,6 +3,7 @@ const path = require('path');
 const lessMiddleware = require('less-middleware');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const moment = require('moment');
 
 const app = express();
 
@@ -92,6 +93,44 @@ function SiteStats(ping) {
     })
 }
 
+function getWeek() {
+
+    return new Promise((good, bad) => {
+
+        const DAYS_TO_ROLL_BACK = 7;
+
+        const ranges = [];
+
+        for (let i = 0; i < DAYS_TO_ROLL_BACK; i++) {
+            ranges.push({
+                start: moment().subtract(i, 'days').startOf('day').toDate(),
+                end: moment().subtract(i, 'days').endOf('day').toDate(),
+                human: moment().subtract(i, 'days').format("dddd Do")
+            })
+        }
+
+
+        Promise.all(ranges.map(range => {
+            return Ping.find( //query today up to tonight
+                {"createdAt": {"$gte": range.start, "$lt": range.end}}).countDocuments().exec()
+        }))
+            .then(counts => {
+                console.log(ranges);
+                console.log(counts);
+
+                return good(
+                    ranges.map((range, i) => {
+                        range.count = counts[i];
+                        return range
+                    })
+                )
+
+            })
+            .catch(bad)
+    })
+}
+
+
 app.get('/client.js', function (req, res, next) {
     return res.sendFile(path.join(__dirname, '/public/js/dist/client.js'));
 });
@@ -126,14 +165,25 @@ app.get('/site/:base', function (req, res, next) {
     let buff = new Buffer.from(req.params.base, 'base64');
     let text = buff.toString('ascii');
 
+    getWeek()
+        .then(week => {
 
-    SiteStats(text)
-        .then(site => {
-            return res.render('show', {site})
+            return SiteStats(text)
+                .then(site => {
+
+                    site.week = week;
+                    return res.render('show', {site})
+                })
+                .catch(err => {
+                    return next(err);
+                });
+
         })
         .catch(err => {
             return next(err);
-        });
+        })
+    // getWeek();
+
 
 });
 

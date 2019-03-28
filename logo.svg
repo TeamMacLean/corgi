@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91+devel+osxmenu r12922"
+   sodipodi:docname="logo.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="301.79258"
+     inkscape:cy="605.43365"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="2560"
+     inkscape:window-height="1395"
+     inkscape:window-x="0"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4152"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-size:160px;line-height:125%;font-family:'DIN Condensed';-inkscape-font-specification:'DIN Condensed,  Bold Condensed';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="matrix(0.26458333,0,0,0.26458333,6.815373,76.572719)"
+       inkscape:export-filename="/Users/pagem/Documents/workspace/corgi/public/logo.png"
+       inkscape:export-xdpi="83.77755"
+       inkscape:export-ydpi="83.77755"><flowRegion
+         id="flowRegion4154"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-size:160px;font-family:'DIN Condensed';-inkscape-font-specification:'DIN Condensed,  Bold Condensed'"><rect
+           id="rect4156"
+           width="538.41125"
+           height="215.66759"
+           x="242.94168"
+           y="239.64636"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-size:160px;font-family:'DIN Condensed';-inkscape-font-specification:'DIN Condensed,  Bold Condensed'" /></flowRegion><flowPara
+         id="flowPara4158"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-size:192px;font-family:'DIN Condensed';-inkscape-font-specification:'DIN Condensed, Bold Condensed'">CORGI</flowPara></flowRoot>    <path
+       style="fill:#00d1b2;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.3096655px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 38.085909,135.43557 -7.251678,9.4223 -5.042721,10.0309 1.870886,11.483 12.828938,15.03416 18.441598,-8.26112 0.668172,-14.09522 z"
+       id="path4160"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccc"
+       inkscape:export-filename="/Users/pagem/Documents/workspace/corgi/public/logo.png"
+       inkscape:export-xdpi="83.77755"
+       inkscape:export-ydpi="83.77755" />
+  </g>
+</svg>
