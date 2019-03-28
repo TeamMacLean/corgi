@@ -102,10 +102,15 @@ function getWeek(origin) {
         const ranges = [];
 
         for (let i = 0; i < DAYS_TO_ROLL_BACK; i++) {
+            let human = 'Today';
+
+            if (!moment().subtract(i, 'days').isSame(moment(), 'day')) {
+                human = moment().subtract(i, 'days').format("dddd Do");
+            }
             ranges.push({
                 start: moment().subtract(i, 'days').startOf('day').toDate(),
                 end: moment().subtract(i, 'days').endOf('day').toDate(),
-                human: moment().subtract(i, 'days').format("dddd Do"),
+                human: human,
                 offset: i
             })
         }
