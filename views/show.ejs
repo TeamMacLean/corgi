@@ -6,6 +6,15 @@
         <h1 class="title has-text-centered"><a><%- site.origin %></a></h1>
 
         <canvas id="myChart" height="100"></canvas>
+        <form>
+            <div class="field">
+                <label class="label"># Days to show</label>
+                <div class="control">
+                    <input id="daysToShow" class="input" type="number" placeholder="7" style="max-width: 120px;">
+                    <button class="button is-primary" type="button" onclick="updateDayCount()">Update</button>
+                </div>
+            </div>
+        </form>
 
         <hr/>
 
@@ -18,7 +27,6 @@
             </thead>
             <tbody>
             <% site.paths.map(path=>{ %>
-
                 <tr>
                     <th><%- path.path %></th>
                     <td><%- path.count %></td>
@@ -33,6 +41,41 @@
 
 
 <script>
+    var dts = document.getElementById('daysToShow');
+
+    function updateDayCount() {
+        insertParam('days', dts.value);
+    }
+
+    function insertParam(key, value) {
+        key = encodeURI(key);
+        value = encodeURI(value);
+
+        var kvp = document.location.search.substr(1).split('&');
+
+        var i = kvp.length;
+        var x;
+        while (i--) {
+            x = kvp[i].split('=');
+
+            if (x[0] == key) {
+                x[1] = value;
+                kvp[i] = x.join('=');
+                break;
+            }
+        }
+
+        if (i < 0) {
+            kvp[kvp.length] = [key, value].join('=');
+        }
+
+        //this will reload the page, it's likely better to store this until finished
+        document.location.search = kvp.join('&');
+
+        console.log(document.location);
+    }
+
+
     var siteObject = <%- JSON.stringify(site) %>;
     var ctx = document.getElementById('myChart').getContext('2d');
 
@@ -43,6 +86,8 @@
     var valueArray = siteObject.week.map(function (day) {
         return day.count;
     });
+
+    dts.value = siteObject.week.length;
 
     var myChart = new Chart(ctx, {
         type: 'bar',
