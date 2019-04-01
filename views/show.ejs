@@ -89,14 +89,14 @@
 
     dts.value = siteObject.week.length;
 
-    function getRandomColor() {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
+    // function getRandomColor() {
+    //     var letters = '0123456789ABCDEF';
+    //     var color = '#';
+    //     for (var i = 0; i < 6; i++) {
+    //         color += letters[Math.floor(Math.random() * 16)];
+    //     }
+    //     return color;
+    // }
 
     function random_rgba() {
         var o = Math.round, r = Math.random, s = 255;
@@ -117,14 +117,12 @@
             datasets: [{
                 label: '# of visits',
                 data: valueArray,
-                backgroundColor: '#22D0B2',
-                borderColor: '#22D0B2',
-                borderWidth: 4,
-                fill: false,
+                backgroundColor: colors,
+                borderColor: colors,
+                borderWidth: 1
             }]
         },
         options: {
-            responsive: true,
             scales: {
                 yAxes: [{
                     ticks: {
