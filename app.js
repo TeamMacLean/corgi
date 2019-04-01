@@ -172,7 +172,7 @@ app.get('/site/:base', function (req, res, next) {
     let buff = new Buffer.from(req.params.base, 'base64');
     let origin = buff.toString('ascii');
 
-    let daysCount = parseInt(req.params.days) || 7;
+    let daysCount = parseInt(req.query.days) || 7;
 
     getWeek(origin, daysCount)
         .then(week => {
