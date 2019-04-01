@@ -115,11 +115,22 @@ function getWeek(origin, daysCount) {
 
         return Promise.all(ranges.map((range, i) => {
             return new Promise((g2, b2) => {
+                const dateRange = {"$gte": range.start, "$lt": range.end};
                 Ping.find( //query today up to tonight
-                    {origin: origin, "createdAt": {"$gte": range.start, "$lt": range.end}}).countDocuments().exec()
+                    {origin: origin, "createdAt": dateRange}).countDocuments().exec()
                     .then(count => {
                         range.count = count;
-                        return g2(range);
+
+                        uniquePings(origin, dateRange)
+                            .then(uips => {
+                                // console.log('pings', uips);
+                                range.uniqueIPs = uips
+                                return g2(range);
+
+                            })
+                            .catch(b2);
+
+
                     })
                     .catch(b2);
             })
@@ -135,6 +146,11 @@ function getWeek(origin, daysCount) {
             })
             .catch(bad)
     })
+}
+
+function uniquePings(origin, dateRange) {
+    return Ping.find({origin: origin, "createdAt": dateRange}).distinct('fromIP')
+    .countDocuments().exec()
 }
 
 

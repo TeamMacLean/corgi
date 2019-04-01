@@ -87,6 +87,10 @@
         return day.count;
     });
 
+    var pingArray = siteObject.week.map(function (day) {
+        return day.uniqueIPs;
+    })
+
     dts.value = siteObject.week.length;
 
     // function getRandomColor() {
@@ -105,8 +109,10 @@
 
 
     var colors = []
+    var colors2 = []
     for (var i = 0; i < siteObject.week.length; i++) {
         colors.push(random_rgba());
+        colors2.push(random_rgba())
     }
 
 
@@ -120,7 +126,14 @@
                 backgroundColor: colors,
                 borderColor: colors,
                 borderWidth: 1
-            }]
+            }, {
+                label: '# unique visitors',
+                data: pingArray,
+                backgroundColor: colors2,
+                borderColor: colors2,
+                borderWidth: 1
+            }
+            ]
         },
         options: {
             scales: {
