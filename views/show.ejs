@@ -98,9 +98,15 @@
         return color;
     }
 
+    function random_rgba() {
+        var o = Math.round, r = Math.random, s = 255;
+        return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + '0.1' + ')';
+    }
+
+
     var colors = []
     for (var i = 0; i < siteObject.week.length; i++) {
-        colors.push(getRandomColor());
+        colors.push(random_rgba());
     }
 
 
