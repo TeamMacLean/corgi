@@ -111,15 +111,14 @@
 
 
     var myChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: {
             labels: datesArray,
             datasets: [{
                 label: '# of visits',
                 data: valueArray,
-                backgroundColor: colors,
-
-                borderColor: colors,
+                backgroundColor: '#FEDB62',
+                borderColor: '#FEDB62',
                 borderWidth: 1
             }]
         },
