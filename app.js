@@ -9,6 +9,8 @@ const app = express();
 
 const config = require('./config');
 
+mongoose.connect('mongodb://localhost:27017/corgi', {useNewUrlParser: true});
+
 app.use(cors());
 
 // view engine setup
@@ -25,7 +27,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-mongoose.connect('mongodb://localhost:27017/corgi', {useNewUrlParser: true});
 
 const Ping = require('./models/ping');
 
@@ -88,20 +89,16 @@ function SiteStats(ping) {
 
                 return good(output);
             }).catch(bad);
-
-
     })
 }
 
-function getWeek(origin) {
+function getWeek(origin, daysCount) {
 
     return new Promise((good, bad) => {
 
-        const DAYS_TO_ROLL_BACK = 7;
-
         const ranges = [];
 
-        for (let i = 0; i < DAYS_TO_ROLL_BACK; i++) {
+        for (let i = 0; i < daysCount; i++) {
             let human = 'Today';
 
             if (!moment().subtract(i, 'days').isSame(moment(), 'day')) {
@@ -175,7 +172,9 @@ app.get('/site/:base', function (req, res, next) {
     let buff = new Buffer.from(req.params.base, 'base64');
     let origin = buff.toString('ascii');
 
-    getWeek(origin)
+    let daysCount = parseInt(req.params.days) || 7;
+
+    getWeek(origin, daysCount)
         .then(week => {
 
             return SiteStats(origin)
