@@ -121,14 +121,14 @@ function getWeek(origin, daysCount) {
                     .then(count => {
                         range.count = count;
 
-                        uniquePings(origin, dateRange)
-                            .then(uips => {
-                                // console.log('pings', uips);
-                                range.uniqueIPs = uips
-                                return g2(range);
+                        // uniqueIPs(origin, dateRange)
+                        //     .then(uips => {
+                        //         console.log('pings', uips);
+                        // range.uniqueIPs = uips;
+                        return g2(range);
 
-                            })
-                            .catch(b2);
+                        // })
+                        // .catch(b2);
 
 
                     })
@@ -148,10 +148,10 @@ function getWeek(origin, daysCount) {
     })
 }
 
-function uniquePings(origin, dateRange) {
-    return Ping.find({origin: origin, "createdAt": dateRange}).distinct('fromIP')
-    .countDocuments().exec()
-}
+// function uniqueIPs(origin, dateRange) {
+//     return Ping.find({origin: origin, "createdAt": dateRange}).distinct('fromIP')
+//     .countDocuments().exec()
+// }
 
 
 app.get('/client.js', function (req, res, next) {
