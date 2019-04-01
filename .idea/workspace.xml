@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bba2a337-63b0-4fa5-a5fc-517381e90260" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/show.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/show.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -48,8 +49,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/show.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="586">
-              <caret line="120" column="37" selection-start-line="120" selection-start-column="37" selection-end-line="120" selection-end-column="37" />
+            <state relative-caret-position="571">
+              <caret line="119" column="41" selection-start-line="119" selection-start-column="41" selection-end-line="119" selection-end-column="41" />
               <folding>
                 <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#form#0;n#div#0;n#section#0;n#!!top" expanded="true" />
               </folding>
@@ -355,8 +356,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/show.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="586">
-          <caret line="120" column="37" selection-start-line="120" selection-start-column="37" selection-end-line="120" selection-end-column="37" />
+        <state relative-caret-position="571">
+          <caret line="119" column="41" selection-start-line="119" selection-start-column="41" selection-end-line="119" selection-end-column="41" />
           <folding>
             <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#form#0;n#div#0;n#section#0;n#!!top" expanded="true" />
           </folding>
