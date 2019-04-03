@@ -155,7 +155,7 @@ function getWeek(origin, daysCount) {
 
 
 app.get('/client.js', function (req, res, next) {
-    return res.sendFil3e(path.join(__dirname, '/public/js/dist/client.js'));
+    return res.sendFile(path.join(__dirname, '/public/js/dist/client.js'));
 });
 
 app.get('/', function (req, res, next) {
