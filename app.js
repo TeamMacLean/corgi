@@ -122,8 +122,8 @@ function getWeek(origin, daysCount) {
                         range.count = count;
 
                         uniqueVisitors(origin, dateRange)
-                            .then(uips => {
-                                range.uniqueVisitors = uips;
+                            .then(uv => {
+                                range.uniqueVisitors = uv.length;
                                 return g2(range);
 
                             })
@@ -149,7 +149,7 @@ function getWeek(origin, daysCount) {
 
 function uniqueVisitors(origin, dateRange) {
     return Ping.find({origin: origin, "createdAt": dateRange}).distinct('fingerprint', {"fingerprint": {$ne: null}})
-        .exec().length
+        .exec()
 }
 
 
