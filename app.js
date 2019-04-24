@@ -163,12 +163,12 @@ app.get('/', function (req, res, next) {
         .then(pings => {
 
             Promise.all(pings.map(ping => {
-                return Ping.find({origin: ping}).countDocuments().exec()
+                return Ping.find({origin: ping}).exec()
             }))
                 .then(counts => {
 
                     pings = pings.map((ping, i) => {
-                        return {origin: ping, count: counts[i], originBase64: new Buffer.from(ping).toString('base64')}
+                        return {origin: ping, count: counts[i].length, originBase64: new Buffer.from(ping).toString('base64')}
                     });
 
                     return res.render('index', {pings});
