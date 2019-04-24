@@ -152,18 +152,6 @@ function uniqueVisitors(origin, dateRange) {
         .exec()
 }
 
-function uniqueFromPings(pings) {
-    function removeDuplicates(myArr, prop) {
-        return myArr.filter((obj, pos, arr) => {
-            return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos;
-        });
-    }
-
-    return removeDuplicates(pings, 'fingerprint');
-
-
-}
-
 
 app.get('/client.js', function (req, res, next) {
     return res.sendFile(path.join(__dirname, '/public/js/dist/client.js'));
@@ -183,8 +171,7 @@ app.get('/', function (req, res, next) {
                         return {
                             origin: ping,
                             count: counts[i].length,
-                            originBase64: new Buffer.from(ping).toString('base64'),
-                            unique: uniqueFromPings(counts[i]).length
+                            originBase64: new Buffer.from(ping).toString('base64')
                         }
                     });
 
