@@ -108,12 +108,12 @@
     }
 
 
-    var colors = []
-    var colors2 = []
-    for (var i = 0; i < siteObject.week.length; i++) {
-        colors.push(random_rgba());
-        colors2.push(random_rgba())
-    }
+    // var colors = []
+    // var colors2 = []
+    // for (var i = 0; i < siteObject.week.length; i++) {
+    //     colors.push(random_rgba());
+    //     colors2.push(random_rgba())
+    // }
 
 
     var myChart = new Chart(ctx, {
@@ -123,15 +123,15 @@
             datasets: [{
                 label: '# of visits',
                 data: valueArray,
-                backgroundColor: colors,
-                borderColor: colors,
+                backgroundColor: '#22D0B2',//colors,
+                borderColor: '#22D0B2',//colors,
                 borderWidth: 1
             }
                 , {
                     label: '# unique visitors',
                     data: uniqueVisitorsArray,
-                    backgroundColor: colors2,
-                    borderColor: colors2,
+                    backgroundColor: '#2B9EEB',//colors2,
+                    borderColor: '#2B9EEB',//colors2,
                     borderWidth: 1
                 }
             ]
