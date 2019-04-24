@@ -169,7 +169,7 @@ app.get('/', function (req, res, next) {
 
                     Promise.all(
                         uniqueOrigins.map((ping, i) => {
-                            return Ping.find({origin: origin}).distinct('fingerprint', {"fingerprint": {$ne: null}}).exec()
+                            return Ping.find({origin: ping}).distinct('fingerprint', {"fingerprint": {$ne: null}}).exec()
                                 .then(uniques => {
                                     return {
                                         origin: ping,
