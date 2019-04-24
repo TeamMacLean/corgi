@@ -148,7 +148,7 @@ function getWeek(origin, daysCount) {
 }
 
 function uniqueVisitors(origin, dateRange) {
-    return Ping.find({origin: origin, "createdAt": dateRange}).distinct('fingerprint', { "fingerprint" : { $ne : null }))
+    return Ping.find({origin: origin, "createdAt": dateRange}).distinct('fingerprint', { "fingerprint" : { $ne : null }})
         .countDocuments().exec()
 }
 
