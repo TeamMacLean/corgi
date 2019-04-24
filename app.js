@@ -160,26 +160,37 @@ app.get('/client.js', function (req, res, next) {
 app.get('/', function (req, res, next) {
 
     Ping.find().distinct('origin')
-        .then(pings => {
+        .then(uniqueOrigins => {
 
-            Promise.all(pings.map(ping => {
-                return Ping.find({origin: ping}).exec()
+            Promise.all(uniqueOrigins.map(origin => {
+                return Ping.find({origin: origin}).exec()
             }))
                 .then(counts => {
 
-                    pings = pings.map((ping, i) => {
-                        return {
-                            origin: ping,
-                            count: counts[i].length,
-                            originBase64: new Buffer.from(ping).toString('base64')
-                        }
-                    });
+                    Promise.all(
+                        uniqueOrigins.map((ping, i) => {
+                            return Ping.find({origin: origin}).distinct('fingerprint', {"fingerprint": {$ne: null}}).exec()
+                                .then(uniques => {
+                                    return {
+                                        origin: ping,
+                                        count: counts[i].length,
+                                        originBase64: new Buffer.from(ping).toString('base64'),
+                                        uniqueVisitors: uniques.length
+                                    }
+                                })
+                                .catch(next)
+                        })
+                    )
+                        .then(pings => {
+                            return res.render('index', {pings});
+                        })
+                        .catch(next);
 
-                    return res.render('index', {pings});
+
                 })
                 .catch(err => {
                     console.error(err);
-                    next();
+                    next(err);
                 })
 
 
