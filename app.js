@@ -218,10 +218,12 @@ app.post('/', function (req, res, next) {
 
 
     if (req.body && req.body.location) {
-        const {href, ancestorOrigins, origin, protocol, host, hostname, port, pathname, search, hash} = req.body.location
+        const {href, ancestorOrigins, origin, protocol, host, hostname, port, pathname, search, hash} = req.body.location;
+        const fingerprint = req.body.fingerprint;
         new Ping({
             href, ancestorOrigins, origin, protocol, host, hostname, port, pathname, search, hash,
-            fromIP: ClientIP
+            fromIP: ClientIP,
+            fingerprint: fingerprint
         })
             .save()
             .catch(err => {
