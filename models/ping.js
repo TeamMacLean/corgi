@@ -16,7 +16,8 @@ const pingSchema = new Schema({
     search: {type: String},
     hash: {type: String},
 
-    fromIP: {type: String}
+    fromIP: {type: String},
+    fingerprint: {type: String}
 
 
 }, {timestamps: true});
