@@ -194,23 +194,45 @@
 </script>
 
 <script>
+
+
+
+
     var ctx1 = document.getElementById('browser-os').getContext('2d');
     new Chart(ctx1, {
-        data: data,
+        data: {
+            labels: [],
+            datasets: [{
+                label: '',
+                data: []
+            }]
+        },
         type: 'polarArea',
         options: {}
     });
 
     var ctx2 = document.getElementById('browser-name').getContext('2d');
-    new Chart(ctx2, {
-        data: data,
+    new Chart(ctx1, {
+        data: {
+            labels: [],
+            datasets: [{
+                label: '',
+                data: []
+            }]
+        },
         type: 'polarArea',
         options: {}
     });
 
     var ctx3 = document.getElementById('browser-mobile').getContext('2d');
-    new Chart(ctx3, {
-        data: data,
+    new Chart(ctx1, {
+        data: {
+            labels: [],
+            datasets: [{
+                label: '',
+                data: []
+            }]
+        },
         type: 'polarArea',
         options: {}
     });
