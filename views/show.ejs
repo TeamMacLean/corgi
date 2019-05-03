@@ -45,7 +45,7 @@
                             <div class="columns">
                                 <% Object.keys(site.browserStats.browsers).map(browser=>{ %>
                                     <div class="column">
-                                        <h2 class="is-5"><%- browser %></h2>
+                                        <h2><%- browser %></h2>
                                         <% site.browserStats.browsers[browser].versions.map(version=>{ %>
                                             <p> <%- version %></p>
                                         <% }) %>
@@ -58,33 +58,35 @@
                 </article>
             <% } %>
 
-            <article class="accordion">
-                <div class="accordion-header">
-                    <p>Paths</p>
-                    <button class="toggle" aria-label="toggle"></button>
-                </div>
-                <div class="accordion-body">
-                    <div class="accordion-content">
-                        <table class="table is-fullwidth">
-                            <thead>
-                            <tr>
-                                <th><abbr title="Path">Path</abbr></th>
-                                <th>Visits</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <% site.paths.map(path=>{ %>
-                                <tr>
-                                    <th><%- path.path %></th>
-                                    <td><%- path.count %></td>
-                                </tr>
-
-                            <% }) %>
-                            </tbody>
-                        </table>
+            <% if(site.paths){ %>
+                <article class="accordion">
+                    <div class="accordion-header">
+                        <p>Paths</p>
+                        <button class="toggle" aria-label="toggle"></button>
                     </div>
-                </div>
-            </article>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <table class="table is-fullwidth">
+                                <thead>
+                                <tr>
+                                    <th><abbr title="Path">Path</abbr></th>
+                                    <th>Visits</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <% site.paths.map(path=>{ %>
+                                    <tr>
+                                        <th><%- path.path %></th>
+                                        <td><%- path.count %></td>
+                                    </tr>
+
+                                <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </article>
+            <% } %>
         </section>
     </div>
 </section>

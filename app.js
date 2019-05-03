@@ -32,70 +32,70 @@ app.use(function (req, res, next) {
 const Ping = require('./models/ping');
 
 
-function SiteStats(ping) {
-    return new Promise((good, bad) => {
+// function SiteStats(ping) {
+//     return new Promise((good, bad) => {
+//
+//         const promises = [];
+//         const output = {origin: ping, paths: []};
+//
+//         promises.push(
+//             new Promise((good, bad) => {
+//                 Ping.find({origin: ping}).countDocuments().exec()
+//                     .then(count => {
+//                         output.count = count;
+//                         return good();
+//                     })
+//                     .catch(err => {
+//                         return bad(err);
+//                     });
+//             })
+//         );
+//
+//
+//         promises.push(
+//             new Promise((good, bad) => {
+//                 Ping.find({origin: ping}).distinct('pathname')
+//                     .then(paths => {
+//
+//
+//                         Promise.all(paths.map(path => {
+//                                 return new Promise((g, b) => {
+//                                     Ping.find({origin: ping, pathname: path}).countDocuments().exec()
+//                                         .then(count => {
+//                                             output.paths.push({path, count});
+//                                             g();
+//                                         })
+//                                         .catch(b);
+//                                 })
+//                             })
+//                         )
+//                             .then(good)
+//                             .catch(bad)
+//
+//
+//                     })
+//                     .catch(bad)
+//             })
+//         );
+//
+//         Promise.all(promises)
+//             .then(() => {
+//                 output.paths = output.paths.sort((a, b) => {
+//                     if (a.path < b.path)
+//                         return -1;
+//                     if (a.path > b.path)
+//                         return 1;
+//                     return 0;
+//                 });
+//
+//                 return good(output);
+//             }).catch(bad);
+//     })
+// }
 
-        const promises = [];
-        const output = {origin: ping, paths: []};
-
-        promises.push(
-            new Promise((good, bad) => {
-                Ping.find({origin: ping}).countDocuments().exec()
-                    .then(count => {
-                        output.count = count;
-                        return good();
-                    })
-                    .catch(err => {
-                        return bad(err);
-                    });
-            })
-        );
-
-
-        promises.push(
-            new Promise((good, bad) => {
-                Ping.find({origin: ping}).distinct('pathname')
-                    .then(paths => {
-
-
-                        Promise.all(paths.map(path => {
-                                return new Promise((g, b) => {
-                                    Ping.find({origin: ping, pathname: path}).countDocuments().exec()
-                                        .then(count => {
-                                            output.paths.push({path, count});
-                                            g();
-                                        })
-                                        .catch(b);
-                                })
-                            })
-                        )
-                            .then(good)
-                            .catch(bad)
-
-
-                    })
-                    .catch(bad)
-            })
-        );
-
-        Promise.all(promises)
-            .then(() => {
-                output.paths = output.paths.sort((a, b) => {
-                    if (a.path < b.path)
-                        return -1;
-                    if (a.path > b.path)
-                        return 1;
-                    return 0;
-                });
-
-                return good(output);
-            }).catch(bad);
-    })
-}
-
-function getBrowsers(origin) {
-    return Ping.find({origin}).distinct('browserInfo')
-}
+// function getBrowsers(origin) {
+//     return Ping.find({origin}).distinct('browserInfo')
+// }
 
 function getBrowserStats(origin) {
 
@@ -279,27 +279,25 @@ app.get('/site/:base', function (req, res, next) {
 
     let daysCount = parseInt(req.query.days) || 7;
 
+
+    let site = {};
     getWeek(origin, daysCount)
         .then(week => {
 
-            return SiteStats(origin)
-                .then(site => {
+            // return SiteStats(origin)
+            //     .then(site => {
 
-                    site.week = week;
+            site.week = week;
 
-                    getBrowserStats(origin)
-                        .then(browserStats => {
-                            site.browserStats = browserStats;
-                            // getBrowsers(origin)
-                            //     .then(browsers => {
-                            //         site.browsers = browsers;
-                            return res.render('show', {site})
-                            // }).catch(next);
-                        }).catch(next);
-                })
-                .catch(next);
+            getBrowserStats(origin)
+                .then(browserStats => {
+                    site.browserStats = browserStats;
+                    return res.render('show', {site})
+                }).catch(next);
         })
-        .catch(next)
+        .catch(next);
+    // })
+    // .catch(next)
     // getWeek();
 
 
