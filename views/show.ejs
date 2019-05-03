@@ -42,14 +42,16 @@
                     </div>
                     <div class="accordion-body">
                         <div class="accordion-content">
-
-                            <% Object.keys(site.browserStats.browsers).map(browser=>{ %>
-
-                                <h2><%- browser %></h2>
-                                <% site.browserStats.browsers[browser].versions.map(version=>{ %>
-                                    <p> <%- version %></p>
+                            <div class="columns">
+                                <% Object.keys(site.browserStats.browsers).map(browser=>{ %>
+                                    <div class="column">
+                                        <h2 class="is-5"><%- browser %></h2>
+                                        <% site.browserStats.browsers[browser].versions.map(version=>{ %>
+                                            <p> <%- version %></p>
+                                        <% }) %>
+                                    </div>
                                 <% }) %>
-                            <% }) %>
+                            </div>
 
                         </div>
                     </div>
