@@ -101,7 +101,7 @@ function getBrowserStats(origin) {
 
     return new Promise((good, bad) => {
 
-        const output = {browsers: {}, os: [], mobile: []};
+        const output = {browsers: {}, os: {}, mobile: []};
 
 
         const promises = [
@@ -140,7 +140,35 @@ function getBrowserStats(origin) {
             new Promise((g, b) => {
                 Ping.find({origin}).distinct('browserInfo.os')
                     .then(oss => {
-                        output.oss = oss;
+                        // output.oss = oss;
+
+                        const tidyOS = {};
+
+                        oss.map(os => {
+
+                            if (os.indexOf('OS X') > -1) {
+                                if (!tidyOS['MacOS']) {
+                                    tidyOS['MacOS'].versions = []
+                                }
+                                tidyOS['MacOS'].versions.push(os.split('OS X '))
+                            } else {
+                                let split = os.split(' ');
+                                if (!split[0]) {
+                                    tidyOS[split[0]].versions = []
+                                }
+                                tidyOS[split[0]].versions.push(split[1])
+                            }
+
+                        });
+
+                        output.os = tidyOS
+
+                        // if (!output.os[oss]) {
+                        //     output.os[oss] = {}
+                        // }
+                        //
+                        // output.os[oss].versions = versions;
+
                         g();
                     })
                     .catch(b)

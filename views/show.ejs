@@ -20,17 +20,28 @@
 
         <% if(site.browserStats){ %>
             <!--<div class="columns">-->
-                <!--<div class="column">-->
-                    <!--<canvas id="browser-os"></canvas>-->
-                <!--</div>-->
-                <!--<div class="column">-->
-                    <!--<canvas id="browser-name"></canvas>-->
-                <!--</div>-->
-                <!--<div class="column">-->
-                    <!--<canvas id="browser-mobile"></canvas>-->
-                <!--</div>-->
+            <!--<div class="column">-->
+            <!--<canvas id="browser-os"></canvas>-->
+            <!--</div>-->
+            <!--<div class="column">-->
+            <!--<canvas id="browser-name"></canvas>-->
+            <!--</div>-->
+            <!--<div class="column">-->
+            <!--<canvas id="browser-mobile"></canvas>-->
+            <!--</div>-->
             <!--</div>-->
             <!--<hr/>-->
+
+            <%
+            const tidyOS = {};
+                site.browserStats.os.map(os=>{
+
+                    if(os.indexOf('OS X') > -1){
+                        tidyOS['MacOS'].versions
+                    }
+                })
+
+             %>
 
             <h2 class="title is-4 has-text-centered">Browsers</h2>
             <div class="columns">
@@ -38,6 +49,22 @@
                     <div class="column">
                         <div class="has-text-centered">
                             <h2 class="heading"><%- browser %></h2>
+                            <ul>
+                                <% site.browserStats.browsers[browser].versions.map(version=>{ %>
+                                    <li><p> <%- version %></p></li>
+                                <% }) %>
+                            </ul>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+
+            <h2 class="title is-4 has-text-centered">Operating Systems</h2>
+            <div class="columns">
+                <% Object.keys(site.browserStats.os).map(oss=>{ %>
+                    <div class="column">
+                        <div class="has-text-centered">
+                            <h2 class="heading"><%- oss %></h2>
                             <ul>
                                 <% site.browserStats.browsers[browser].versions.map(version=>{ %>
                                     <li><p> <%- version %></p></li>
@@ -161,44 +188,44 @@
 
 <script>
 
-//    var ctx1 = document.getElementById('browser-os').getContext('2d');
-//    new Chart(ctx1, {
-//        data: {
-//            labels: siteObject.browserStats.oss,
-//            datasets: [{
-//                label: 'lbl',
-//                data: [1, 40]
-//            }]
-//        },
-//        type: 'polarArea',
-//        options: {}
-//    });
-//
-//    var ctx2 = document.getElementById('browser-name').getContext('2d');
-//    new Chart(ctx2, {
-//        data: {
-//            labels: siteObject.browserStats.oss,
-//            datasets: [{
-//                label: 'lbl',
-//                data: [1, 40]
-//            }]
-//        },
-//        type: 'polarArea',
-//        options: {}
-//    });
-//
-//    var ctx3 = document.getElementById('browser-mobile').getContext('2d');
-//    new Chart(ctx3, {
-//        data: {
-//            labels: siteObject.browserStats.oss,
-//            datasets: [{
-//                label: 'lbl',
-//                data: [1, 40]
-//            }]
-//        },
-//        type: 'polarArea',
-//        options: {}
-//    });
+    //    var ctx1 = document.getElementById('browser-os').getContext('2d');
+    //    new Chart(ctx1, {
+    //        data: {
+    //            labels: siteObject.browserStats.oss,
+    //            datasets: [{
+    //                label: 'lbl',
+    //                data: [1, 40]
+    //            }]
+    //        },
+    //        type: 'polarArea',
+    //        options: {}
+    //    });
+    //
+    //    var ctx2 = document.getElementById('browser-name').getContext('2d');
+    //    new Chart(ctx2, {
+    //        data: {
+    //            labels: siteObject.browserStats.oss,
+    //            datasets: [{
+    //                label: 'lbl',
+    //                data: [1, 40]
+    //            }]
+    //        },
+    //        type: 'polarArea',
+    //        options: {}
+    //    });
+    //
+    //    var ctx3 = document.getElementById('browser-mobile').getContext('2d');
+    //    new Chart(ctx3, {
+    //        data: {
+    //            labels: siteObject.browserStats.oss,
+    //            datasets: [{
+    //                label: 'lbl',
+    //                data: [1, 40]
+    //            }]
+    //        },
+    //        type: 'polarArea',
+    //        options: {}
+    //    });
 
 </script>
 <% include _foot.ejs %>
