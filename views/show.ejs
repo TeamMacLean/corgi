@@ -70,10 +70,6 @@
     </div>
 </section>
 
-<script>
-    bulmaAccordion.attach();
-</script>
-
 
 <script>
     var dts = document.getElementById('daysToShow');
@@ -168,7 +164,7 @@
         return os.split(' ')[0];
     })
 
-    var ctx1 = document.getElementById('browser-os').getContext('2d');
+    var ctx1 = document.getElementById('browser-os')
     new Chart(ctx1, {
         data: {
             labels: ['a', 'b'],
@@ -181,7 +177,7 @@
         options: {}
     });
 
-    var ctx2 = document.getElementById('browser-name').getContext('2d');
+    var ctx2 = document.getElementById('browser-name')
     new Chart(ctx2, {
         data: {
             labels: ['a', 'b'],
@@ -194,7 +190,7 @@
         options: {}
     });
 
-    var ctx3 = document.getElementById('browser-mobile').getContext('2d');
+    var ctx3 = document.getElementById('browser-mobile')
     new Chart(ctx3, {
         data: {
             labels: ['a', 'b'],
