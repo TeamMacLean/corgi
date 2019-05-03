@@ -34,7 +34,7 @@
         <% } %>
 
         <section class="accordions">
-            <% if(site.browsers){ %>
+            <% if(site.browserStats){ %>
                 <article class="accordion is-active">
                     <div class="accordion-header">
                         <p>Browsers</p>
@@ -42,29 +42,15 @@
                     </div>
                     <div class="accordion-body">
                         <div class="accordion-content">
-                            <table class="table is-fullwidth">
-                                <thead>
-                                <tr>
-                                    <th><abbr title="Name">Name</abbr></th>
-                                    <th>Version</th>
-                                    <th>Version #</th>
-                                    <th>Mobile</th>
-                                    <th>OS</th>
-                                </tr>
-                                </thead>
-                                <tbody>
 
-                                <% site.browsers.map(browser=>{ %>
-                                    <tr>
-                                        <th><%- browser.name %></th>
-                                        <th><%- browser.version %></th>
-                                        <th><%- browser.versionNumber %></th>
-                                        <th><%- browser.mobile %></th>
-                                        <td><%- browser.os %></td>
-                                    </tr>
+                            <% Object.keys(site.browserStats.browsers).map(browser=>{ %>
+
+                                <h2><%- browser %></h2>
+                                <% site.browserStats.browsers[browser].map(version=>{ %>
+                                <p><%- version %></p>
                                 <% }) %>
-                                </tbody>
-                            </table>
+                            <% }) %>
+
 
                         </div>
                     </div>
