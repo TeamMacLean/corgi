@@ -17,14 +17,13 @@
         </form>
 
         <section class="accordions">
-            <article class="accordion">
+            <article class="accordion is-active">
                 <div class="accordion-header">
-                    <p>Hello World</p>
+                    <p>Browsers</p>
                     <button class="toggle" aria-label="toggle"></button>
                 </div>
                 <div class="accordion-body">
                     <div class="accordion-content">
-                        <h2>Browsers</h2>
                         <table class="table is-fullwidth">
                             <thead>
                             <tr>
@@ -56,14 +55,13 @@
             </article>
 
 
-            <article class="accordion">
+            <article class="accordion is-active">
                 <div class="accordion-header">
-                    <p>Hello World</p>
+                    <p>Paths</p>
                     <button class="toggle" aria-label="toggle"></button>
                 </div>
                 <div class="accordion-body">
                     <div class="accordion-content">
-                        <h2>Paths</h2>
                         <table class="table is-fullwidth">
                             <thead>
                             <tr>
@@ -84,12 +82,12 @@
                     </div>
                 </div>
             </article>
-
+        </section>
     </div>
 </section>
 
 <script>
-    var accordions = bulmaAccordion.attach();
+    bulmaAccordion.attach();
 </script>
 
 <script>
