@@ -139,7 +139,7 @@
         //this will reload the page, it's likely better to store this until finished
         document.location.search = kvp.join('&');
 
-        console.log(document.location);
+        // console.log(document.location);
     }
 
 
@@ -196,12 +196,14 @@
 <script>
 
 
-
+    const osses = siteObject.browserStats.oss.map(os => {
+        return os.split(' ')[0];
+    })
 
     var ctx1 = document.getElementById('browser-os').getContext('2d');
     new Chart(ctx1, {
         data: {
-            labels: [],
+            labels: osses,
             datasets: [{
                 label: '',
                 data: []

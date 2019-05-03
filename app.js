@@ -290,8 +290,11 @@ app.get('/site/:base', function (req, res, next) {
                     getBrowserStats(origin)
                         .then(browserStats => {
                             site.browserStats = browserStats;
-                            return res.render('show', {site})
-
+                            getBrowsers(origin)
+                                .then(browsers => {
+                                    site.browsers = browsers;
+                                    return res.render('show', {site})
+                                }).catch(next);
                         }).catch(next);
                 })
                 .catch(next);
