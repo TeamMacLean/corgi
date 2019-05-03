@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bba2a337-63b0-4fa5-a5fc-517381e90260" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/corgi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/corgi.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/_head.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/_head.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/show.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/show.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -14,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="227" selection-start-line="227" selection-end-line="227" />
+            <state relative-caret-position="79">
+              <caret line="193" selection-start-line="193" selection-end-line="193" />
             </state>
           </provider>
         </entry>
@@ -44,8 +47,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/show.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="40" column="41" selection-start-line="40" selection-start-column="41" selection-end-line="40" selection-end-column="41" />
+            <state relative-caret-position="490">
+              <caret line="90" selection-start-line="90" selection-end-line="90" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/_head.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -99,15 +111,15 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/public/style/style.less" />
-        <option value="$PROJECT_DIR$/views/_head.ejs" />
         <option value="$PROJECT_DIR$/config.js" />
         <option value="$PROJECT_DIR$/views/_foot.ejs" />
         <option value="$PROJECT_DIR$/models/site.js" />
         <option value="$PROJECT_DIR$/public/js/src/client.js" />
         <option value="$PROJECT_DIR$/views/index.ejs" />
         <option value="$PROJECT_DIR$/models/ping.js" />
-        <option value="$PROJECT_DIR$/views/show.ejs" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/views/show.ejs" />
+        <option value="$PROJECT_DIR$/views/_head.ejs" />
       </list>
     </option>
   </component>
@@ -278,13 +290,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/_head.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -319,13 +324,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/show.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" column="41" selection-start-line="40" selection-start-column="41" selection-end-line="40" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/ping.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -335,8 +333,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="227" selection-start-line="227" selection-end-line="227" />
+        <state relative-caret-position="79">
+          <caret line="193" selection-start-line="193" selection-end-line="193" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/show.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="90" selection-start-line="90" selection-end-line="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/_head.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
         </state>
       </provider>
     </entry>

@@ -16,59 +16,81 @@
             </div>
         </form>
 
-        <hr/>
+        <section class="accordions">
+            <article class="accordion">
+                <div class="accordion-header">
+                    <p>Hello World</p>
+                    <button class="toggle" aria-label="toggle"></button>
+                </div>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <h2>Browsers</h2>
+                        <table class="table is-fullwidth">
+                            <thead>
+                            <tr>
+                                <th><abbr title="Name">Name</abbr></th>
+                                <th>Version</th>
+                                <th>Version #</th>
+                                <th>Mobile</th>
+                                <th>OS</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% site.browsers.map(browser=>{ %>
 
-        <h2>Browsers</h2>
-        <table class="table is-fullwidth">
-            <thead>
-            <tr>
-                <th><abbr title="Name">Name</abbr></th>
-                <th>Version</th>
-                <th>Version #</th>
-                <th>Mobile</th>
-                <th>OS</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% site.browsers.map(browser=>{ %>
+                                <% const browserObj = JSON.parse(browser) %>
+                                <tr>
+                                    <th><%- browserObj.name %></th>
+                                    <th><%- browserObj.version %></th>
+                                    <th><%- browserObj.versionNumber %></th>
+                                    <th><%- browserObj.mobile %></th>
+                                    <td><%- browserObj.os %></td>
+                                </tr>
 
-                <% const browserObj = JSON.parse(browser) %>
-                <tr>
-                    <th><%- browserObj.name %></th>
-                    <th><%- browserObj.version %></th>
-                    <th><%- browserObj.versionNumber %></th>
-                    <th><%- browserObj.mobile %></th>
-                    <td><%- browserObj.os %></td>
-                </tr>
+                            <% }) %>
+                            </tbody>
+                        </table>
 
-            <% }) %>
-            </tbody>
-        </table>
+                    </div>
+                </div>
+            </article>
 
-        <hr/>
 
-        <h2>Paths</h2>
-        <table class="table is-fullwidth">
-            <thead>
-            <tr>
-                <th><abbr title="Path">Path</abbr></th>
-                <th>Visits</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% site.paths.map(path=>{ %>
-                <tr>
-                    <th><%- path.path %></th>
-                    <td><%- path.count %></td>
-                </tr>
+            <article class="accordion">
+                <div class="accordion-header">
+                    <p>Hello World</p>
+                    <button class="toggle" aria-label="toggle"></button>
+                </div>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <h2>Paths</h2>
+                        <table class="table is-fullwidth">
+                            <thead>
+                            <tr>
+                                <th><abbr title="Path">Path</abbr></th>
+                                <th>Visits</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% site.paths.map(path=>{ %>
+                                <tr>
+                                    <th><%- path.path %></th>
+                                    <td><%- path.count %></td>
+                                </tr>
 
-            <% }) %>
-            </tbody>
-        </table>
+                            <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </article>
 
     </div>
 </section>
 
+<script>
+    var accordions = bulmaAccordion.attach();
+</script>
 
 <script>
     var dts = document.getElementById('daysToShow');
