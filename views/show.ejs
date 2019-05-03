@@ -21,13 +21,13 @@
         <% if(site.browserStats){ %>
             <div class="columns">
                 <div class="column">
-                    <div id="browser-os"></div>
+                    <canvas id="browser-os" height="100"></canvas>
                 </div>
                 <div class="column">
-                    <div id="browser-name"></div>
+                    <canvas id="browser-name" height="100"></canvas>
                 </div>
                 <div class="column">
-                    <div id="browser-mobile"></div>
+                    <canvas id="browser-mobile" height="100"></canvas>
                 </div>
             </div>
 
@@ -164,7 +164,7 @@
         return os.split(' ')[0];
     })
 
-    var ctx1 = document.getElementById('browser-os')
+    var ctx1 = document.getElementById('browser-os').getContext('2d');
     new Chart(ctx1, {
         data: {
             labels: ['a', 'b'],
@@ -177,7 +177,7 @@
         options: {}
     });
 
-    var ctx2 = document.getElementById('browser-name')
+    var ctx2 = document.getElementById('browser-name').getContext('2d');
     new Chart(ctx2, {
         data: {
             labels: ['a', 'b'],
@@ -190,7 +190,7 @@
         options: {}
     });
 
-    var ctx3 = document.getElementById('browser-mobile')
+    var ctx3 = document.getElementById('browser-mobile').getContext('2d');
     new Chart(ctx3, {
         data: {
             labels: ['a', 'b'],
