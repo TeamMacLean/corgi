@@ -250,8 +250,12 @@ app.post('/', function (req, res, next) {
             browser: ClientBrowserString
         })
             .save()
+            .then(() => {
+                res.send('')
+            })
             .catch(err => {
                 console.error('error', err);
+                res.send('')
             })
     }
 
