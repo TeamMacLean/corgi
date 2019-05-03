@@ -148,7 +148,7 @@ function getBrowserStats(origin) {
 
                             if (os.indexOf('OS X') > -1) {
                                 if (!tidyOS['MacOS']) {
-                                    tidyOS['MacOS'].versions = []
+                                    tidyOS['MacOS'] = {versions: []}
                                 }
                                 tidyOS['MacOS'].versions.push(os.split('OS X '))
                             } else {
@@ -161,7 +161,7 @@ function getBrowserStats(origin) {
 
                         });
 
-                        output.os = tidyOS
+                        output.os = tidyOS;
 
                         // if (!output.os[oss]) {
                         //     output.os[oss] = {}

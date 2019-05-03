@@ -32,17 +32,6 @@
             <!--</div>-->
             <!--<hr/>-->
 
-            <%
-            const tidyOS = {};
-                site.browserStats.os.map(os=>{
-
-                    if(os.indexOf('OS X') > -1){
-                        tidyOS['MacOS'].versions
-                    }
-                })
-
-             %>
-
             <h2 class="title is-4 has-text-centered">Browsers</h2>
             <div class="columns">
                 <% Object.keys(site.browserStats.browsers).map(browser=>{ %>
@@ -66,7 +55,7 @@
                         <div class="has-text-centered">
                             <h2 class="heading"><%- oss %></h2>
                             <ul>
-                                <% site.browserStats.browsers[browser].versions.map(version=>{ %>
+                                <% site.browserStats.os[oss].versions.map(version=>{ %>
                                     <li><p> <%- version %></p></li>
                                 <% }) %>
                             </ul>
