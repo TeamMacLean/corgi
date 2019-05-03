@@ -94,8 +94,9 @@ function SiteStats(ping) {
 }
 
 function getBrowsers(origin) {
-    return Ping.find({origin}).distinct('browser')
+    return Ping.find({origin}).distinct('browserInfo')
 }
+
 
 function getWeek(origin, daysCount) {
 
@@ -234,25 +235,14 @@ app.get('/site/:base', function (req, res, next) {
 
 app.post('/', function (req, res, next) {
 
-    const ClientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress || 'UNKNOWN';
-
-    var ClientBrowserString = "";
-
-    try {
         const ClientBrowser = browser(req.headers['user-agent']);
-        ClientBrowserString = JSON.stringify(ClientBrowser);
-    } catch (err) {
-        console.error(err);
-    }
-
     if (req.body && req.body.location) {
         const {href, ancestorOrigins, origin, protocol, host, hostname, port, pathname, search, hash} = req.body.location;
         const fingerprint = req.body.fingerprint;
         new Ping({
             href, ancestorOrigins, origin, protocol, host, hostname, port, pathname, search, hash,
-            fromIP: ClientIP,
             fingerprint: fingerprint,
-            browser: ClientBrowserString
+            browserInfo: ClientBrowser
         })
             .save()
             .then(() => {

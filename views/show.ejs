@@ -18,6 +18,20 @@
 
         <hr/>
 
+        <div class="columns">
+            <div class="column">
+                <div id="browser-os"></div>
+            </div>
+            <div class="column">
+                <div id="browser-name"></div>
+            </div>
+            <div class="column">
+                <div id="browser-mobile"></div>
+            </div>
+        </div>
+
+        <hr/>
+
         <section class="accordions">
             <article class="accordion is-active">
                 <div class="accordion-header">
@@ -37,15 +51,16 @@
                             </tr>
                             </thead>
                             <tbody>
+
                             <% site.browsers.map(browser=>{ %>
 
                                 <% const browserObj = JSON.parse(browser) %>
                                 <tr>
-                                    <th><%- browserObj.name %></th>
-                                    <th><%- browserObj.version %></th>
-                                    <th><%- browserObj.versionNumber %></th>
-                                    <th><%- browserObj.mobile %></th>
-                                    <td><%- browserObj.os %></td>
+                                    <th><%- browser.name %></th>
+                                    <th><%- browser.version %></th>
+                                    <th><%- browser.versionNumber %></th>
+                                    <th><%- browser.mobile %></th>
+                                    <td><%- browser.os %></td>
                                 </tr>
 
                             <% }) %>
@@ -91,6 +106,8 @@
 <script>
     bulmaAccordion.attach();
 </script>
+
+
 
 <script>
     var dts = document.getElementById('daysToShow');
@@ -176,6 +193,30 @@
             }
         }
     });
+</script>
+
+<script>
+    var ctx1 = document.getElementById('browser-os').getContext('2d');
+    new Chart(ctx1, {
+        data: data,
+        type: 'polarArea',
+        options: {}
+    });
+
+    var ctx2 = document.getElementById('browser-name').getContext('2d');
+    new Chart(ctx2, {
+        data: data,
+        type: 'polarArea',
+        options: {}
+    });
+
+    var ctx3 = document.getElementById('browser-mobile').getContext('2d');
+    new Chart(ctx3, {
+        data: data,
+        type: 'polarArea',
+        options: {}
+    });
+
 </script>
 <% include _foot.ejs %>
 

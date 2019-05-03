@@ -15,10 +15,14 @@ const pingSchema = new Schema({
     pathname: {type: String},
     search: {type: String},
     hash: {type: String},
-
-    fromIP: {type: String},
     fingerprint: {type: String},
-    browser:{type:String}
+    browserInfo: {
+        name: {type: String},
+        os: {type: String},
+        version: {type: String},
+        versionNumber: {type: String},
+        mobile: {type: Boolean}
+    }
 
 
 }, {timestamps: true});
