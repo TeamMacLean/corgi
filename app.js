@@ -251,11 +251,11 @@ app.post('/', function (req, res, next) {
         })
             .save()
             .then(() => {
-                res.send('')
+                res.status(200).json({status:"ok"})
             })
             .catch(err => {
                 console.error('error', err);
-                res.send('')
+                res.status(200).json({status:"ok"})
             })
     }
 
