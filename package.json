@@ -17,6 +17,7 @@
     "less-middleware": "~2.2.1",
     "moment": "^2.24.0",
     "mongoose": "^5.4.20",
+    "promise-polyfill": "^8.1.0",
     "unfetch": "^4.1.0"
   },
   "devDependencies": {
