@@ -4,6 +4,7 @@ const lessMiddleware = require('less-middleware');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const moment = require('moment');
+const browser = require('browser-detect');
 
 const app = express();
 
@@ -230,6 +231,14 @@ app.post('/', function (req, res, next) {
 
     const ClientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress || 'UNKNOWN';
 
+    var ClientBrowserString = "";
+
+    try {
+        const ClientBrowser = browser(req.headers['user-agent']);
+        ClientBrowserString = JSON.stringify(ClientBrowser);
+    } catch (err) {
+        console.error(err);
+    }
 
     if (req.body && req.body.location) {
         const {href, ancestorOrigins, origin, protocol, host, hostname, port, pathname, search, hash} = req.body.location;
@@ -237,7 +246,8 @@ app.post('/', function (req, res, next) {
         new Ping({
             href, ancestorOrigins, origin, protocol, host, hostname, port, pathname, search, hash,
             fromIP: ClientIP,
-            fingerprint: fingerprint
+            fingerprint: fingerprint,
+            browser: ClientBrowserString
         })
             .save()
             .catch(err => {
