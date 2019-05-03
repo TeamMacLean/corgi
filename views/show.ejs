@@ -30,10 +30,7 @@
                     <div id="browser-mobile"></div>
                 </div>
             </div>
-            <hr/>
-        <% } %>
 
-        <% if(site.browserStats){ %>
             <div class="columns">
                 <% Object.keys(site.browserStats.browsers).map(browser=>{ %>
                     <div class="column">
@@ -174,10 +171,10 @@
     var ctx1 = document.getElementById('browser-os').getContext('2d');
     new Chart(ctx1, {
         data: {
-            labels: osses,
+            labels: ['a', 'b'],
             datasets: [{
-                label: '',
-                data: []
+                label: 'lbl',
+                data: [1, 40]
             }]
         },
         type: 'polarArea',
@@ -185,12 +182,12 @@
     });
 
     var ctx2 = document.getElementById('browser-name').getContext('2d');
-    new Chart(ctx1, {
+    new Chart(ctx2, {
         data: {
-            labels: [],
+            labels: ['a', 'b'],
             datasets: [{
-                label: '',
-                data: []
+                label: 'lbl',
+                data: [1, 40]
             }]
         },
         type: 'polarArea',
@@ -198,12 +195,12 @@
     });
 
     var ctx3 = document.getElementById('browser-mobile').getContext('2d');
-    new Chart(ctx1, {
+    new Chart(ctx3, {
         data: {
-            labels: [],
+            labels: ['a', 'b'],
             datasets: [{
-                label: '',
-                data: []
+                label: 'lbl',
+                data: [1, 40]
             }]
         },
         type: 'polarArea',
