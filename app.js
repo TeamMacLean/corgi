@@ -101,7 +101,7 @@ function getBrowserStats(origin) {
 
     return new Promise((good, bad) => {
 
-        const output = {browsers: [], os: [], mobile: []};
+        const output = {browsers: {}, os: [], mobile: []};
 
 
         const promises = [
@@ -109,7 +109,7 @@ function getBrowserStats(origin) {
                 Ping.find({origin}).distinct('browserInfo.name')
                     .then(names => {
 
-                        output.names = names;
+                        // output.names = names;
 
                         Promise.all(
                             names.map(name => {
