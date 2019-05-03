@@ -117,6 +117,11 @@ function getBrowserStats(origin) {
                                 return new Promise((gg, bb) => {
                                     Ping.find({origin, 'browserInfo.name': name}).distinct('browserInfo.versionNumber')
                                         .then(versions => {
+
+                                            if (!output.browsers[name]) {
+                                                output.browsers[name] = {}
+                                            }
+
                                             output.browsers[name].versions = versions;
                                             gg()
                                         })
