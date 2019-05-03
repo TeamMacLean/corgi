@@ -150,7 +150,7 @@ function getBrowserStats(origin) {
                                 if (!tidyOS['MacOS']) {
                                     tidyOS['MacOS'] = {versions: []}
                                 }
-                                tidyOS['MacOS'].versions.push(os.split('OS X '))
+                                tidyOS['MacOS'].versions.push(os.split('OS X ')[1])
                             } else {
                                 let split = os.split(' ');
                                 if (!tidyOS[split[0]]) {
