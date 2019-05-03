@@ -18,6 +18,36 @@
 
         <hr/>
 
+        <h2>Browsers</h2>
+        <table class="table is-fullwidth">
+            <thead>
+            <tr>
+                <th><abbr title="Name">Name</abbr></th>
+                <th>Version</th>
+                <th>Version #</th>
+                <th>Mobile</th>
+                <th>OS</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% site.browsers.map(browser=>{ %>
+
+                <% const browserObj = JSON.parse(browser) %>
+                <tr>
+                    <th><%- browserObj.name %></th>
+                    <th><%- browserObj.version %></th>
+                    <th><%- browserObj.versionNumber %></th>
+                    <th><%- browserObj.mobile %></th>
+                    <td><%- browserObj.os %></td>
+                </tr>
+
+            <% }) %>
+            </tbody>
+        </table>
+
+        <hr/>
+
+        <h2>Paths</h2>
         <table class="table is-fullwidth">
             <thead>
             <tr>
@@ -92,26 +122,6 @@
     })
 
     dts.value = siteObject.week.length;
-
-    // function getRandomColor() {
-    //     var letters = '0123456789ABCDEF';
-    //     var color = '#';
-    //     for (var i = 0; i < 6; i++) {
-    //         color += letters[Math.floor(Math.random() * 16)];
-    //     }
-    //     return color;
-    // }
-
-    // function random_rgba() {
-    //     var o = Math.round, r = Math.random, s = 255;
-    //     return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + '0.5' + ')';
-    // }
-    // var colors = []
-    // var colors2 = []
-    // for (var i = 0; i < siteObject.week.length; i++) {
-    //     colors.push(random_rgba());
-    //     colors2.push(random_rgba())
-    // }
 
 
     var myChart = new Chart(ctx, {

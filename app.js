@@ -93,6 +93,10 @@ function SiteStats(ping) {
     })
 }
 
+function getBrowsers(origin) {
+    return Ping.find({origin}).distinct('browser')
+}
+
 function getWeek(origin, daysCount) {
 
     return new Promise((good, bad) => {
@@ -212,16 +216,17 @@ app.get('/site/:base', function (req, res, next) {
                 .then(site => {
 
                     site.week = week;
-                    return res.render('show', {site})
-                })
-                .catch(err => {
-                    return next(err);
-                });
 
+                    getBrowsers(origin)
+                        .then(browsers => {
+                            site.browsers = browsers;
+                            return res.render('show', {site})
+
+                        }).catch(next);
+                })
+                .catch(next);
         })
-        .catch(err => {
-            return next(err);
-        })
+        .catch(next)
     // getWeek();
 
 
@@ -251,11 +256,11 @@ app.post('/', function (req, res, next) {
         })
             .save()
             .then(() => {
-                res.status(200).json({status:"ok"})
+                res.status(200).json({status: "ok"})
             })
             .catch(err => {
                 console.error('error', err);
-                res.status(200).json({status:"ok"})
+                res.status(200).json({status: "ok"})
             })
     }
 
