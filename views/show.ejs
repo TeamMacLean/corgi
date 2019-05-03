@@ -46,7 +46,7 @@
                             <% Object.keys(site.browserStats.browsers).map(browser=>{ %>
 
                                 <h2><%- browser %></h2>
-                                <% site.browserStats.browsers[browser].map(version=>{ %>
+                                <% site.browserStats.browsers[browser].versions.map(version=>{ %>
                                 <p><%- version %></p>
                                 <% }) %>
                             <% }) %>
