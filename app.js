@@ -154,7 +154,7 @@ function getBrowserStats(origin) {
                             } else {
                                 let split = os.split(' ');
                                 if (!split[0]) {
-                                    tidyOS[split[0]].versions = []
+                                    tidyOS[split[0]] = {versions: []}
                                 }
                                 tidyOS[split[0]].versions.push(split[1])
                             }
