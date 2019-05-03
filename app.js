@@ -97,6 +97,70 @@ function getBrowsers(origin) {
     return Ping.find({origin}).distinct('browserInfo')
 }
 
+function getBrowserStats(origin) {
+
+    return new Promise((good, bad) => {
+
+        const output = {browsers: [], os: [], mobile: []};
+
+
+        const promises = [
+            new Promise((g, b) => {
+                Ping.find({origin}).distinct('browserInfo.name')
+                    .then(names => {
+
+                        output.names = names;
+
+                        Promise.all(
+                            names.map(name => {
+
+                                return new Promise((gg, bb) => {
+                                    Ping.find({origin, 'browserInfo.name': name}).distinct('browserInfo.versionNumber')
+                                        .then(versions => {
+                                            output.browsers[name].versions = versions;
+                                            gg()
+                                        })
+                                        .catch(bb);
+                                })
+                            })
+                        )
+                            .then(() => {
+                                g()
+                            })
+                            .catch(b);
+                    });
+            }),
+
+
+            new Promise((g, b) => {
+                Ping.find({origin}).distinct('browserInfo.os')
+                    .then(oss => {
+                        output.oss = oss;
+                        g();
+                    })
+                    .catch(b)
+            }),
+
+            new Promise((g, b) => {
+                Ping.find({origin}).distinct('browserInfo.mobile')
+                    .then(mobile => {
+                        output.mobile = mobile;
+                        g();
+                    })
+                    .catch(b)
+            }),
+        ];
+
+
+        Promise.all(promises)
+            .then(() => {
+                good(output);
+            })
+            .catch(bad);
+    })
+
+}
+
 
 function getWeek(origin, daysCount) {
 
@@ -218,9 +282,9 @@ app.get('/site/:base', function (req, res, next) {
 
                     site.week = week;
 
-                    getBrowsers(origin)
-                        .then(browsers => {
-                            site.browsers = browsers;
+                    getBrowserStats(origin)
+                        .then(browserStats => {
+                            site.browserStats = browserStats;
                             return res.render('show', {site})
 
                         }).catch(next);
@@ -235,7 +299,7 @@ app.get('/site/:base', function (req, res, next) {
 
 app.post('/', function (req, res, next) {
 
-        const ClientBrowser = browser(req.headers['user-agent']);
+    const ClientBrowser = browser(req.headers['user-agent']);
     if (req.body && req.body.location) {
         const {href, ancestorOrigins, origin, protocol, host, hostname, port, pathname, search, hash} = req.body.location;
         const fingerprint = req.body.fingerprint;

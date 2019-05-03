@@ -18,60 +18,60 @@
 
         <hr/>
 
-        <div class="columns">
-            <div class="column">
-                <div id="browser-os"></div>
+        <% if(site.browserStats){ %>
+            <div class="columns">
+                <div class="column">
+                    <div id="browser-os"></div>
+                </div>
+                <div class="column">
+                    <div id="browser-name"></div>
+                </div>
+                <div class="column">
+                    <div id="browser-mobile"></div>
+                </div>
             </div>
-            <div class="column">
-                <div id="browser-name"></div>
-            </div>
-            <div class="column">
-                <div id="browser-mobile"></div>
-            </div>
-        </div>
-
-        <hr/>
+            <hr/>
+        <% } %>
 
         <section class="accordions">
-            <article class="accordion is-active">
-                <div class="accordion-header">
-                    <p>Browsers</p>
-                    <button class="toggle" aria-label="toggle"></button>
-                </div>
-                <div class="accordion-body">
-                    <div class="accordion-content">
-                        <table class="table is-fullwidth">
-                            <thead>
-                            <tr>
-                                <th><abbr title="Name">Name</abbr></th>
-                                <th>Version</th>
-                                <th>Version #</th>
-                                <th>Mobile</th>
-                                <th>OS</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <% site.browsers.map(browser=>{ %>
-
-                                <tr>
-                                    <th><%- browser.name %></th>
-                                    <th><%- browser.version %></th>
-                                    <th><%- browser.versionNumber %></th>
-                                    <th><%- browser.mobile %></th>
-                                    <td><%- browser.os %></td>
-                                </tr>
-
-                            <% }) %>
-                            </tbody>
-                        </table>
-
+            <% if(site.browsers){ %>
+                <article class="accordion is-active">
+                    <div class="accordion-header">
+                        <p>Browsers</p>
+                        <button class="toggle" aria-label="toggle"></button>
                     </div>
-                </div>
-            </article>
+                    <div class="accordion-body">
+                        <div class="accordion-content">
+                            <table class="table is-fullwidth">
+                                <thead>
+                                <tr>
+                                    <th><abbr title="Name">Name</abbr></th>
+                                    <th>Version</th>
+                                    <th>Version #</th>
+                                    <th>Mobile</th>
+                                    <th>OS</th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
+                                <% site.browsers.map(browser=>{ %>
+                                    <tr>
+                                        <th><%- browser.name %></th>
+                                        <th><%- browser.version %></th>
+                                        <th><%- browser.versionNumber %></th>
+                                        <th><%- browser.mobile %></th>
+                                        <td><%- browser.os %></td>
+                                    </tr>
+                                <% }) %>
+                                </tbody>
+                            </table>
 
-            <article class="accordion is-active">
+                        </div>
+                    </div>
+                </article>
+            <% } %>
+
+            <article class="accordion">
                 <div class="accordion-header">
                     <p>Paths</p>
                     <button class="toggle" aria-label="toggle"></button>
@@ -105,7 +105,6 @@
 <script>
     bulmaAccordion.attach();
 </script>
-
 
 
 <script>
