@@ -1,3 +1,4 @@
+import 'promise-polyfill/src/polyfill';
 import fetch from 'unfetch';
 import Fingerprint2 from 'fingerprintjs2';
 
