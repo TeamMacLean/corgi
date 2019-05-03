@@ -146,14 +146,14 @@ function getBrowserStats(origin) {
                     .catch(b)
             }),
 
-            new Promise((g, b) => {
-                Ping.find({origin}).distinct('browserInfo.mobile')
-                    .then(mobile => {
-                        output.mobile = mobile;
-                        g();
-                    })
-                    .catch(b)
-            }),
+            // new Promise((g, b) => {
+            //     Ping.find({origin}).distinct('browserInfo.mobile')
+            //         .then(mobile => {
+            //             output.mobile = mobile;
+            //             g();
+            //         })
+            //         .catch(b)
+            // }),
         ];
 
 

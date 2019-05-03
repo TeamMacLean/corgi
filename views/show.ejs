@@ -45,10 +45,14 @@
                             <div class="columns">
                                 <% Object.keys(site.browserStats.browsers).map(browser=>{ %>
                                     <div class="column">
-                                        <h2><%- browser %></h2>
-                                        <% site.browserStats.browsers[browser].versions.map(version=>{ %>
-                                            <p> <%- version %></p>
-                                        <% }) %>
+                                        <div class="has-text-centerd">
+                                            <h2 class="tite is-5"><%- browser %></h2>
+                                            <ul>
+                                                <% site.browserStats.browsers[browser].versions.map(version=>{ %>
+                                                    <li><p> <%- version %></p></li>
+                                                <% }) %>
+                                            </ul>
+                                        </div>
                                     </div>
                                 <% }) %>
                             </div>
